@@ -1,12 +1,13 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { BilleteraComponent } from './components/billetera/billetera';
 
 @Component({
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, BilleteraComponent],
   selector: 'app-root',
   styleUrl: './app.css',
   templateUrl: './app.html',
 })
 export class App {
-  protected readonly title = signal('billetera-digital-nueva');
+ 
 }

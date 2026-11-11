@@ -1,0 +1,44 @@
+<!-- Tarjeta contenedora con borde azul -->
+<div class="card shadow-sm border-primary">
+  <!-- Cabecera del Hijo -->
+  <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center py-3">
+    <h3 class="h5 mb-0 text-white">NuevoMovimientoComponent</h3>
+    <span class="badge bg-primary border border-light text-uppercase px-3 py-2">HIJO</span>
+  </div>
+
+  <div class="card-body p-4">
+    <!-- Tipo de movimiento -->
+    <div class="mb-3">
+      <label class="form-label text-muted small">Tipo de movimiento</label>
+      <select class="form-select" [(ngModel)]="tipo">
+        <option value="Gasto">Gasto</option>
+        <option value="Recarga">Recarga</option>
+      </select>
+    </div>
+
+    <!-- Monto -->
+    <div class="mb-3">
+      <label class="form-label text-muted small">Monto (S/)</label>
+      <input type="number" class="form-control" [(ngModel)]="monto" placeholder="0.00" min="0.01">
+    </div>
+
+    <!-- Alerta de validación -->
+    @if (tipo === 'Gasto' && monto > saldoActual) {
+      <div class="alert alert-danger py-2 text-center small">
+        Saldo insuficiente para realizar el gasto
+      </div>
+    }
+
+    <!-- Botón de registro -->
+    <button 
+      class="btn btn-primary w-100" 
+      [disabled]="!monto || monto <= 0 || (tipo === 'Gasto' && monto > saldoActual)"
+      (click)="enviarMovimiento()">
+      Registrar movimiento
+    </button>
+
+    <div class="text-center mt-2">
+      <small class="text-muted" style="font-size: 11px;">[disabled] → no se emite un gasto inválido</small>
+    </div>
+  </div>
+</div>
